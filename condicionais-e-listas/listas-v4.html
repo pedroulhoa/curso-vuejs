@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <ul>
+        <li v-for="pessoa in pessoas">
+            <div v-for="(valor, chave, index) in pessoa">
+                {{chave}} = {{valor}} ({{index + 1}})
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            pessoas: [
+                { nome: 'Joao', idade: 26, peso: 60 },
+                { nome: 'Maria', idade: 20, peso: 55 }
+            ]
+        }
+    })
+</script>
+
+<style>
+
+</style>
