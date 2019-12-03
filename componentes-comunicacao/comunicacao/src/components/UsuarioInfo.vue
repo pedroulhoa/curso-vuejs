@@ -11,11 +11,33 @@
 
 <script>
 export default {
-  props: ["nome"],
-  methods: {
-      inverterNome() {
-          return this.nome.split('').reverse().join('')
+  props: {
+    nome: {
+      type: String,
+      required: true
+    },
+    outroNome: {
+      type: String,
+      // pode-se atribuir um valor padrao, nao funciona com o required
+      default: "OutroNome"
+    },
+    outroNomeDefault: {
+      type: String,
+      // default tbm pode ser uma funcao
+      default: function() {
+        return Array(10)
+          .fill(0)
+          .join(",");
       }
+    }
+  },
+  methods: {
+    inverterNome() {
+      return this.nome
+        .split("")
+        .reverse()
+        .join("");
+    }
   }
 };
 </script>
