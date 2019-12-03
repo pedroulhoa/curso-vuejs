@@ -1,24 +1,24 @@
 <template>
   <v-app>
-    <sideMenu />
-    <toolbar />
-    <carousel />
-    <footer-bar />
+    <SideMenu />
+    <ToolBar />
+    <Carousel />
+    <Footer />
   </v-app>
 </template>
 
 <script>
-import SideMenu from "./SideMenu";
-import ToolBar from "./ToolBar";
-import Carousel from "./Carousel";
-import Footer from "./Footer";
+import SideMenu from "@/components/template/SideMenu";
+import ToolBar from "@/components/template/ToolBar";
+import Carousel from "@/components/widgets/Carousel";
+import Footer from "@/components/template/Footer";
 
 export default {
   components: {
-    sideMenu: SideMenu,
-    toolbar: ToolBar,
-    carousel: Carousel,
-    "footer-bar": Footer
+    SideMenu,
+    ToolBar,
+    Carousel,
+    Footer
   },
   data() {
     return {};
