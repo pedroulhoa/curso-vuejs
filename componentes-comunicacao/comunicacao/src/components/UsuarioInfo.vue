@@ -6,10 +6,18 @@
       Nome do Usuário:
       <strong>{{ inverterNome() }}</strong>
     </p>
+    <p>
+      idade do usuário:
+      <strong>{{idadeMutavel}}</strong>
+    </p>
+    <button @click="reiniciarNome">Reiniciar nome</button>
+    <button @click="reiniciarFn()">Reiniciar nome (Callback)</button>
   </div>
 </template>
 
 <script>
+import barramento from "@/barramento";
+
 export default {
   props: {
     nome: {
@@ -29,7 +37,14 @@ export default {
           .fill(0)
           .join(",");
       }
-    }
+    },
+    reiniciarFn: Function,
+    idade: Number
+  },
+  data() {
+    return {
+      idadeMutavel: this.idade
+    };
   },
   methods: {
     inverterNome() {
@@ -37,7 +52,17 @@ export default {
         .split("")
         .reverse()
         .join("");
+    },
+    reiniciarNome() {
+      const antigo = this.nome;
+      this.nome = "Pedro";
+      this.$emit("nomeMudou", this.nome);
     }
+  },
+  created() {
+    barramento.quandoIdadeMudar(idade => {
+      this.idadeMutavel = idade;
+    });
   }
 };
 </script>

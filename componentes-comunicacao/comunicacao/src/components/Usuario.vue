@@ -2,11 +2,24 @@
   <div class="container">
     <h1>Componente Usuário</h1>
     <p>Esse é um componente muito legal!</p>
+    <p>
+      Nome é
+      <strong>{{nome}}</strong>
+    </p>
+    <p>
+      Idade é:
+      <strong>{{idade}}</strong>
+    </p>
     <button @click="alterarNome">Alterar Nome</button>
     <hr />
     <div class="componentes">
-      <app-usuario-info :nome="nome" />
-      <app-usuario-editar />
+      <app-usuario-info
+        @nomeMudou="nome = $event"
+        :nome="nome"
+        :reiniciarFn="reiniciarNome"
+        :idade="idade"
+      />
+      <app-usuario-editar :idade="idade" />
     </div>
   </div>
 </template>
@@ -20,11 +33,15 @@ export default {
   data() {
     return {
       nome: "Pedro",
+      idade: 21
     };
   },
   methods: {
     alterarNome() {
       this.nome = "Maria";
+    },
+    reiniciarNome() {
+      this.nome = "Pedro";
     }
   }
 };
